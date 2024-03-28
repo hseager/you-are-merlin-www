@@ -1,16 +1,37 @@
 :root {
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 20px;
+  --spacing-5: 32px;
+  --spacing-6: 52px;
+  --spacing-7: 84px;
+  --theme-1: #242124;
+  --theme-2: #2b6842;
+  --theme-3: #242124;
+  --font-xs: 11px;
+  --font-sm: 12px;
+  --font-md: 15px;
+  --font-lg: 18px;
+  --font-xl: 22px;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--theme-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
@@ -47,11 +68,44 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--theme-2);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  border: 1px solid var(--theme-2);
+  box-shadow: 0 0 10px var(--theme-2);
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #999;
+}
+
+.input:focus {
+  outline: none;
+  border: 1px solid var(--theme-2);
+  box-shadow: 0 0 6px var(--theme-2);
+}
+
+textarea.input {
+  resize: none;
+}
+
+fieldset {
+  border: 0;
+  display: flex;
+  width: 100%;
+  align-items: middle;
+  padding: 0;
+  margin: 0;
+}
+
+fieldset input.input {
+  margin: 0 var(--spacing-4) 0 0;
 }
 
 @media (prefers-color-scheme: light) {
