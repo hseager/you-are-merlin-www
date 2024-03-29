@@ -1,9 +1,22 @@
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent, useEffect, useRef } from "react";
 import "./App.css";
 import * as wasmPkg from "./pkg";
 
 function App() {
-  const wasm = useMemo(() => wasmPkg.create(), []);
+  // const wasm = useMemo(() => wasmPkg.start("Zelda"), []);
+
+  const terminalRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    wasmPkg.start("Zelda");
+
+    // let terminal = terminalRef.current;
+
+    // terminal &&
+    //   terminal.addEventListener("prompt-update", (event: CustomEventInit) =>
+    //     console.log(event.detail)
+    //   );
+  }, []);
 
   const handleInput = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -11,8 +24,6 @@ function App() {
     const input = formData.get("input");
 
     console.log(input);
-
-    // wasm.run();
   };
 
   return (
@@ -20,15 +31,16 @@ function App() {
       <h1>You are Merlin</h1>
       <p>A text adventure game built with Rust and WASM.</p>
       <textarea
+        ref={terminalRef}
+        id="terminal"
         className="input"
         cols={20}
         rows={16}
-        value={"Some text"}
         readOnly
       />
       <form onSubmit={handleInput}>
         <fieldset>
-          <input className="input" name="input" type="text" />
+          <input id="text-input" className="input" name="input" type="text" />
           <button type="submit">Submit</button>
         </fieldset>
       </form>
