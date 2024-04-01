@@ -1,21 +1,14 @@
-import { ChangeEvent, useEffect, useRef } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef } from "react";
 import "./App.css";
 import * as wasmPkg from "./pkg";
 
 function App() {
-  // const wasm = useMemo(() => wasmPkg.start("Zelda"), []);
+  const wasm = useMemo(() => new wasmPkg.Game("Zelda"), []);
 
   const terminalRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    wasmPkg.start("Zelda");
-
-    // let terminal = terminalRef.current;
-
-    // terminal &&
-    //   terminal.addEventListener("prompt-update", (event: CustomEventInit) =>
-    //     console.log(event.detail)
-    //   );
+    console.log(wasm.get_prompt());
   }, []);
 
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
@@ -23,7 +16,9 @@ function App() {
     const formData = new FormData(event.target);
     const input = formData.get("input");
 
-    console.log(input);
+    wasm.handle_action(input?.toString() ?? "");
+
+    console.log(wasm.get_prompt());
   };
 
   return (
