@@ -18,7 +18,7 @@ function App() {
     //   );
   }, []);
 
-  const handleInput = (event: ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const input = formData.get("input");
@@ -38,9 +38,9 @@ function App() {
         rows={16}
         readOnly
       />
-      <form onSubmit={handleInput}>
+      <form id="main-form" onSubmit={handleSubmit} autoComplete="off">
         <fieldset>
-          <input id="text-input" className="input" name="input" type="text" />
+          <input className="input" name="input" type="text" />
           <button type="submit">Submit</button>
         </fieldset>
       </form>
