@@ -14,9 +14,7 @@ export const Game = ({ theme }: GameProps) => {
 
   useEffect(() => {
     setData(wasm.get_initial_prompt());
-    setData((data) => {
-      return (data += "\n\n" + wasm.get_prompt());
-    });
+    updateTerminal(wasm.get_prompt());
   }, []);
 
   useEffect(() => {
@@ -31,20 +29,26 @@ export const Game = ({ theme }: GameProps) => {
     sendAction(input?.toString().trim() ?? "");
   };
 
+  const updateTerminal = (value: string) => {
+    setData((data) => {
+      return (data += "\n\n" + value);
+    });
+  };
+
   const sendAction = (action: string) => {
     let response = wasm.handle_action(action);
+    if (response) updateTerminal(response);
 
-    if (response) {
-      setData((data) => {
-        return (data += "\n\n" + response);
-      });
-    }
-
-    setData((data) => {
-      return (data += "\n\n" + wasm.get_prompt());
-    });
+    updateTerminal(wasm.get_prompt());
 
     setInput("");
+
+    if (wasm.player_is_healing()) {
+      setInterval(() => {
+        updateTerminal(wasm.heal_player());
+        if (!wasm.player_is_healing()) clearInterval(this);
+      }, 2000);
+    }
   };
 
   const scrollTerminalToBottom = (terminal: HTMLTextAreaElement) =>
