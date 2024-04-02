@@ -10,14 +10,10 @@ function App() {
     <>
       <h1>You are Merlin</h1>
       <p>A text adventure game built with Rust and WASM.</p>
-      <br/>
-      <br/>
-      {
-        !theme && <ThemeSelection setTheme={setTheme} />
-      }
-      {
-        theme && <Terminal theme={theme} />
-      }
+      <br />
+      <br />
+      {!theme && <ThemeSelection setTheme={setTheme} />}
+      {theme && <Terminal theme={theme} />}
     </>
   );
 }
