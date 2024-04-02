@@ -29,26 +29,34 @@ export const Game = ({ theme }: GameProps) => {
     sendAction(input?.toString().trim() ?? "");
   };
 
-  const updateTerminal = (value: string) => {
+  const updateTerminal = (value: string, newLine?: boolean) => {
     setData((data) => {
-      return (data += "\n\n" + value);
+      return (data += `${newLine === false ? "\n" : "\n\n"}` + value);
     });
   };
 
   const sendAction = (action: string) => {
-    let response = wasm.handle_action(action);
+    const response = wasm.handle_action(action);
     if (response) updateTerminal(response);
-
-    updateTerminal(wasm.get_prompt());
 
     setInput("");
 
     if (wasm.player_is_healing()) {
-      setInterval(() => {
-        updateTerminal(wasm.heal_player());
-        if (!wasm.player_is_healing()) clearInterval(this);
-      }, 2000);
+      handleHealing();
     }
+
+    const prompt = wasm.get_prompt();
+    prompt && updateTerminal(prompt);
+  };
+
+  const handleHealing = () => {
+    let healingLoop = setInterval(() => {
+      if (wasm.player_is_healing()) {
+        updateTerminal(wasm.heal_player(), false);
+      } else {
+        clearInterval(healingLoop);
+      }
+    }, wasm.config.rest_interval_seconds);
   };
 
   const scrollTerminalToBottom = (terminal: HTMLTextAreaElement) =>
@@ -64,22 +72,24 @@ export const Game = ({ theme }: GameProps) => {
         ref={terminalRef}
         readOnly
       />
-      <form onSubmit={handleSubmit} autoComplete="off">
-        <ActionButtons
-          actions={wasm.get_actions_display_list().split(",")}
-          sendAction={sendAction}
-        />
-        <fieldset>
-          <input
-            className="input"
-            name="input"
-            type="text"
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
+      {!wasm.player_is_healing() && (
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <ActionButtons
+            actions={wasm.get_actions_display_list().split(",")}
+            sendAction={sendAction}
           />
-          <button>Submit</button>
-        </fieldset>
-      </form>
+          <fieldset>
+            <input
+              className="input"
+              name="input"
+              type="text"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
+            />
+            <button>Submit</button>
+          </fieldset>
+        </form>
+      )}
     </>
   );
 };
