@@ -1,15 +1,17 @@
-import { Dispatch, SetStateAction } from "react";
-
 interface ActionButtons {
   actions: string[];
-  setInput: Dispatch<SetStateAction<string>>;
+  sendAction: (action: string) => void;
 }
 
-export const ActionButtons = ({ actions, setInput }: ActionButtons) => {
+export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
   return (
     <div className="action-buttons">
       {actions.map((action) => (
-        <button onClick={() => setInput(action.trim())} key={action}>
+        <button
+          type="button"
+          onClick={() => sendAction(action.trim())}
+          key={action}
+        >
           {action}
         </button>
       ))}

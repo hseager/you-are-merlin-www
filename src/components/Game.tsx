@@ -28,7 +28,11 @@ export const Game = ({ theme }: GameProps) => {
     const formData = new FormData(event.target);
     const input = formData.get("input");
 
-    wasm.handle_action(input?.toString() ?? "");
+    sendAction(input?.toString().trim() ?? "");
+  };
+
+  const sendAction = (action: string) => {
+    wasm.handle_action(action);
 
     setData((data) => {
       return (data += "\n\n" + wasm.get_prompt());
@@ -43,7 +47,6 @@ export const Game = ({ theme }: GameProps) => {
   return (
     <>
       <textarea
-        id="terminal"
         className="input"
         cols={20}
         rows={16}
@@ -51,10 +54,10 @@ export const Game = ({ theme }: GameProps) => {
         ref={terminalRef}
         readOnly
       />
-      <form id="main-form" onSubmit={handleSubmit} autoComplete="off">
+      <form onSubmit={handleSubmit} autoComplete="off">
         <ActionButtons
           actions={wasm.get_actions_display_list().split(",")}
-          setInput={setInput}
+          sendAction={sendAction}
         />
         <fieldset>
           <input
