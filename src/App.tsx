@@ -9,7 +9,11 @@ function App() {
   const [data, setData] = useState("");
 
   useEffect(() => {
-      setData(wasm.get_prompt());
+      setData(wasm.get_initial_prompt());
+
+      setData((data) => {
+        return data += '\n\n' + wasm.get_prompt()
+      })
   }, []);
 
   useEffect(() => {
