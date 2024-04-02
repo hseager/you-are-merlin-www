@@ -7,10 +7,11 @@
   --spacing-5: 32px;
   --spacing-6: 52px;
   --spacing-7: 84px;
-  --theme-1: #1d1f1d;
+  --theme-1: #1d1d1f;
   --theme-2: #2b6842;
   --theme-3: #313536;
   --theme-4: #217388;
+  --theme-5: #868585;
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 15px;
@@ -104,8 +105,8 @@ button:focus-visible {
 
 .input:focus {
   outline: none;
-  border: 1px solid var(--theme-2);
-  box-shadow: 0 0 6px var(--theme-2);
+  border: 1px solid var(--theme-5);
+  box-shadow: 0 0 6px var(--theme-5);
 }
 
 textarea.input {
