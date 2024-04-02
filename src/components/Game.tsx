@@ -32,7 +32,13 @@ export const Game = ({ theme }: GameProps) => {
   };
 
   const sendAction = (action: string) => {
-    wasm.handle_action(action);
+    let response = wasm.handle_action(action);
+
+    if (response) {
+      setData((data) => {
+        return (data += "\n\n" + response);
+      });
+    }
 
     setData((data) => {
       return (data += "\n\n" + wasm.get_prompt());

@@ -7,9 +7,10 @@
   --spacing-5: 32px;
   --spacing-6: 52px;
   --spacing-7: 84px;
-  --theme-1: #242124;
+  --theme-1: #1d1f1d;
   --theme-2: #2b6842;
-  --theme-3: #242124;
+  --theme-3: #313536;
+  --theme-4: #217388;
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 15px;
@@ -36,11 +37,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--theme-2);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--theme-2);
 }
 
 body {
@@ -63,7 +64,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: var(--theme-2);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -77,6 +78,19 @@ button:focus-visible {
   box-shadow: 0 0 10px var(--theme-2);
 }
 
+.secondary {
+  margin-right: var(--spacing-3);
+  background: var(--theme-4);
+}
+.secondary:hover {
+  border-color: var(--theme-4);
+}
+.secondary:focus,
+.secondary:focus-visible {
+  border: 1px solid var(--theme-4);
+  box-shadow: 0 0 10px var(--theme-4);
+}
+
 .input {
   width: 100%;
   margin-bottom: 16px;
@@ -85,6 +99,7 @@ button:focus-visible {
   border: 1px solid #999;
   font-size: var(--font-md);
   font-family: inherit;
+  background: var(--theme-3);
 }
 
 .input:focus {

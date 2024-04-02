@@ -14,10 +14,3 @@
 .action-buttons {
   margin-bottom: var(--spacing-4);
 }
-
-/* TODO Fix css classes when I can be bothered */
-.action-buttons button,
-.theme-selection button {
-  margin-right: var(--spacing-3);
-  background: var(--theme-2);
-}

@@ -9,6 +9,7 @@ export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
       {actions.map((action) => (
         <button
           type="button"
+          className="secondary"
           onClick={() => sendAction(action.trim())}
           key={action}
         >

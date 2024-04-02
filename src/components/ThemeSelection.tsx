@@ -15,9 +15,13 @@ export const ThemeSelection = ({ setTheme }: ThemeSelectionProps) => {
 
   return (
     <div className="theme-selection">
-      <h3>Select a theme:</h3>
+      <h2>Select a theme</h2>
       {themes.map((theme) => (
-        <button onClick={() => setTheme(theme.trim())} key={theme}>
+        <button
+          className="secondary"
+          onClick={() => setTheme(theme.trim())}
+          key={theme}
+        >
           {theme}
         </button>
       ))}
