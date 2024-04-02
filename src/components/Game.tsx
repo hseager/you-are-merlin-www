@@ -1,11 +1,12 @@
 import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
-import * as wasmPkg from "../pkg";
+import * as wasmPkg from "../pkg/you_are_merlin";
+import { ActionButtons } from "./ActionButtons";
 
-interface TerminalProps {
+interface GameProps {
   theme: string;
 }
 
-export const Terminal = ({ theme }: TerminalProps) => {
+export const Game = ({ theme }: GameProps) => {
   const wasm = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
@@ -51,6 +52,10 @@ export const Terminal = ({ theme }: TerminalProps) => {
         readOnly
       />
       <form id="main-form" onSubmit={handleSubmit} autoComplete="off">
+        <ActionButtons
+          actions={wasm.get_actions_display_list().split(",")}
+          setInput={setInput}
+        />
         <fieldset>
           <input
             className="input"
@@ -59,7 +64,7 @@ export const Terminal = ({ theme }: TerminalProps) => {
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
-          <button type="submit">Submit</button>
+          <button>Submit</button>
         </fieldset>
       </form>
     </>

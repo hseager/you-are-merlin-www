@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Terminal } from "./components/Terminal";
+import { Game } from "./components/Game";
 import { ThemeSelection } from "./components/ThemeSelection";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       <br />
       <br />
       {!theme && <ThemeSelection setTheme={setTheme} />}
-      {theme && <Terminal theme={theme} />}
+      {theme && <Game theme={theme} />}
     </>
   );
 }

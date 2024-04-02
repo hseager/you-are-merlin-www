@@ -14,13 +14,13 @@ export const ThemeSelection = ({ setTheme }: ThemeSelectionProps) => {
   }, []);
 
   return (
-    <>
+    <div className="theme-selection">
       <h3>Select a theme:</h3>
       {themes.map((theme) => (
         <button onClick={() => setTheme(theme.trim())} key={theme}>
           {theme}
         </button>
       ))}
-    </>
+    </div>
   );
 };
