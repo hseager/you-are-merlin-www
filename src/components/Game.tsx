@@ -41,12 +41,16 @@ export const Game = ({ theme }: GameProps) => {
 
     setInput("");
 
-    if (wasm.player_is_healing()) {
-      handleHealing();
-    }
+    handleActions();
 
     const prompt = wasm.get_prompt();
     prompt && updateTerminal(prompt);
+  };
+
+  const handleActions = () => {
+    if (wasm.player_is_healing()) {
+      handleHealing();
+    }
   };
 
   const handleHealing = () => {
