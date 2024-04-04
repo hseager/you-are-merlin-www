@@ -62,8 +62,9 @@ export const Game = ({ theme }: GameProps) => {
   };
 
   const handleHealing = () => {
+    updateTerminal(wasm.heal_player(), false);
     return new Promise<void>((resolve) => {
-      let healingLoop = setInterval(() => {
+      const healingLoop = setInterval(() => {
         if (wasm.player_is_healing()) {
           updateTerminal(wasm.heal_player(), false);
         } else {
@@ -75,8 +76,9 @@ export const Game = ({ theme }: GameProps) => {
   };
 
   const handleBattle = () => {
+    updateTerminal(wasm.handle_battle(), false);
     return new Promise<void>((resolve) => {
-      let battleLoop = setInterval(() => {
+      const battleLoop = setInterval(() => {
         if (wasm.player_is_fighting()) {
           updateTerminal(wasm.handle_battle(), false);
         } else {
