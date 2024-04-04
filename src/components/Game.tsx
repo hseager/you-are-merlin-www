@@ -43,24 +43,48 @@ export const Game = ({ theme }: GameProps) => {
 
     handleActions();
 
+    getPrompt();
+  };
+
+  const getPrompt = () => {
     const prompt = wasm.get_prompt();
     prompt && updateTerminal(prompt);
   };
 
   const handleActions = () => {
     if (wasm.player_is_healing()) {
-      handleHealing();
+      handleHealing().then(getPrompt);
+    }
+
+    if (wasm.player_is_fighting()) {
+      handleBattle().then(getPrompt);
     }
   };
 
   const handleHealing = () => {
-    let healingLoop = setInterval(() => {
-      if (wasm.player_is_healing()) {
-        updateTerminal(wasm.heal_player(), false);
-      } else {
-        clearInterval(healingLoop);
-      }
-    }, wasm.config.rest_interval_seconds);
+    return new Promise<void>((resolve) => {
+      let healingLoop = setInterval(() => {
+        if (wasm.player_is_healing()) {
+          updateTerminal(wasm.heal_player(), false);
+        } else {
+          clearInterval(healingLoop);
+          resolve();
+        }
+      }, wasm.config.rest_interval_seconds * 1000);
+    });
+  };
+
+  const handleBattle = () => {
+    return new Promise<void>((resolve) => {
+      let battleLoop = setInterval(() => {
+        if (wasm.player_is_fighting()) {
+          updateTerminal(wasm.handle_battle(), false);
+        } else {
+          clearInterval(battleLoop);
+          resolve();
+        }
+      }, wasm.config.battle_interval_seconds * 1000);
+    });
   };
 
   const scrollTerminalToBottom = (terminal: HTMLTextAreaElement) =>
@@ -76,24 +100,26 @@ export const Game = ({ theme }: GameProps) => {
         ref={terminalRef}
         readOnly
       />
-      {!wasm.player_is_healing() && (
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <ActionButtons
-            actions={wasm.get_actions_display_list().split(",")}
-            sendAction={sendAction}
-          />
-          <fieldset>
-            <input
-              className="input"
-              name="input"
-              type="text"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
+      {!wasm.player_is_healing() &&
+        !wasm.player_is_fighting() &&
+        wasm.is_running() && (
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <ActionButtons
+              actions={wasm.get_actions_display_list().split(",")}
+              sendAction={sendAction}
             />
-            <button>Submit</button>
-          </fieldset>
-        </form>
-      )}
+            <fieldset>
+              <input
+                className="input"
+                name="input"
+                type="text"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+              />
+              <button>Submit</button>
+            </fieldset>
+          </form>
+        )}
     </>
   );
 };
