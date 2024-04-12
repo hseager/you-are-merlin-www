@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <h1>You are Merlin</h1>
-      <p>A text adventure game built with Rust and WASM.</p>
+      <p>A text adventure game built with Rust and WebAssembly (WASM)</p>
       <br />
       <br />
       {!theme && <ThemeSelection setTheme={setTheme} />}

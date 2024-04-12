@@ -7,19 +7,27 @@ interface GameProps {
 }
 
 export const Game = ({ theme }: GameProps) => {
-  const wasm = useMemo(() => new wasmPkg.Game(theme), []);
+  const game = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
   const [input, setInput] = useState("");
   const [data, setData] = useState("");
 
+  const [actions, setActions] = useState(game.get_actions());
+
   useEffect(() => {
-    setData(wasm.get_initial_prompt());
-    updateTerminal(wasm.get_prompt());
+    setData(game.get_intro());
+
+    const prompt = game.get_prompt();
+    prompt && updateTerminal(prompt);
   }, []);
 
   useEffect(() => {
     terminalRef.current && scrollTerminalToBottom(terminalRef.current);
   }, [data]);
+
+  useEffect(() => {
+    setActions(game.get_actions());
+  }, [game.get_actions()]);
 
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -36,56 +44,31 @@ export const Game = ({ theme }: GameProps) => {
   };
 
   const sendAction = (action: string) => {
-    const response = wasm.handle_action(action);
+    const response = game.handle_action(action);
     if (response) updateTerminal(response);
 
     setInput("");
 
-    handleActions();
+    game.has_event_loop() && handleEventLoop().then(getPrompt);
 
     getPrompt();
   };
 
   const getPrompt = () => {
-    const prompt = wasm.get_prompt();
+    const prompt = game.get_prompt();
     prompt && updateTerminal(prompt);
   };
 
-  const handleActions = () => {
-    if (wasm.player_is_healing()) {
-      handleHealing().then(getPrompt);
-    }
-
-    if (wasm.player_is_fighting()) {
-      handleBattle().then(getPrompt);
-    }
-  };
-
-  const handleHealing = () => {
-    updateTerminal(wasm.heal_player(), false);
+  const handleEventLoop = () => {
     return new Promise<void>((resolve) => {
-      const healingLoop = setInterval(() => {
-        if (wasm.player_is_healing()) {
-          updateTerminal(wasm.heal_player(), false);
+      const eventLoop = setInterval(() => {
+        if (game.has_event_loop()) {
+          updateTerminal(game.progress_event_loop(), false);
         } else {
-          clearInterval(healingLoop);
+          clearInterval(eventLoop);
           resolve();
         }
-      }, wasm.config.rest_interval_seconds * 1000);
-    });
-  };
-
-  const handleBattle = () => {
-    updateTerminal(wasm.handle_battle(), false);
-    return new Promise<void>((resolve) => {
-      const battleLoop = setInterval(() => {
-        if (wasm.player_is_fighting()) {
-          updateTerminal(wasm.handle_battle(), false);
-        } else {
-          clearInterval(battleLoop);
-          resolve();
-        }
-      }, wasm.config.battle_interval_seconds * 1000);
+      }, game.get_event_loop_interval() * 1000);
     });
   };
 
@@ -102,26 +85,24 @@ export const Game = ({ theme }: GameProps) => {
         ref={terminalRef}
         readOnly
       />
-      {!wasm.player_is_healing() &&
-        !wasm.player_is_fighting() &&
-        wasm.is_running() && (
-          <form onSubmit={handleSubmit} autoComplete="off">
-            <ActionButtons
-              actions={wasm.get_actions_display_list().split(",")}
-              sendAction={sendAction}
+      {!game.has_event_loop() && game.is_running() && (
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <ActionButtons
+            actions={actions ? actions.split(",") : []}
+            sendAction={sendAction}
+          />
+          <fieldset>
+            <input
+              className="input"
+              name="input"
+              type="text"
+              value={input}
+              onChange={(event) => setInput(event.target.value)}
             />
-            <fieldset>
-              <input
-                className="input"
-                name="input"
-                type="text"
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-              />
-              <button>Submit</button>
-            </fieldset>
-          </form>
-        )}
+            <button>Submit</button>
+          </fieldset>
+        </form>
+      )}
     </>
   );
 };
