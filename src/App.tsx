@@ -13,7 +13,7 @@ function App() {
       <br />
       <br />
       {!theme && <ThemeSelection setTheme={setTheme} />}
-      {theme && <Game theme={theme} />}
+      {theme && <Game theme={theme} setTheme={setTheme} />}
     </>
   );
 }
