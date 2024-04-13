@@ -5,11 +5,11 @@ interface ActionButtons {
 
 export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
   return (
-    <div className="action-buttons">
-      {actions.map((action) => (
+    <div className="button-list">
+      {actions.map((action, i) => (
         <button
           type="button"
-          className="secondary"
+          className={`button-${i + 1}`}
           onClick={() => sendAction(action.trim())}
           key={action}
         >

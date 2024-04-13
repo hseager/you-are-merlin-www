@@ -12,6 +12,12 @@
   --theme-3: #313536;
   --theme-4: #217388;
   --theme-5: #868585;
+  --game-button-1: #064e3b;
+  --game-button-2: #155e75;
+  --game-button-3: #3730a3;
+  --game-button-4: #9f1239;
+  --game-button-5: #9a3412;
+  --game-button-6: #854d0e;
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 15px;
@@ -69,15 +75,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: var(--theme-2);
-}
-button:focus,
-button:focus-visible {
-  outline: none;
-  border: 1px solid var(--theme-2);
-  box-shadow: 0 0 10px var(--theme-2);
-}
 
 .secondary {
   margin: 0 var(--spacing-3) var(--spacing-3) 0;
@@ -126,15 +123,30 @@ fieldset input.input {
   margin: 0 var(--spacing-4) 0 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.button-1 {
+  background: var(--game-button-1);
+}
+.button-2 {
+  background: var(--game-button-2);
+}
+.button-3 {
+  background: var(--game-button-3);
+}
+.button-4 {
+  background: var(--game-button-4);
+}
+.button-5 {
+  background: var(--game-button-5);
+}
+.button-6 {
+  background: var(--game-button-6);
+}
+
+.button-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.button-list button {
+  margin: 0 var(--spacing-4) var(--spacing-4) 0;
 }
