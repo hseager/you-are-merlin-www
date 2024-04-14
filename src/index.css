@@ -18,6 +18,8 @@
   --game-button-4: #9f1239;
   --game-button-5: #9a3412;
   --game-button-6: #854d0e;
+  --game-button-7: #7f1d1d;
+  --game-button-8: #1f2937;
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 15px;
@@ -92,10 +94,11 @@ button {
 .input {
   width: 100%;
   margin-bottom: 16px;
-  padding: 12px;
+  padding: var(--spacing-4);
   border-radius: 12px;
   border: 1px solid #999;
   font-size: var(--font-md);
+  line-height: 1.5;
   font-family: inherit;
   background: var(--theme-3);
 }
@@ -114,13 +117,14 @@ fieldset {
   border: 0;
   display: flex;
   width: 100%;
-  align-items: middle;
+  align-items: center;
   padding: 0;
   margin: 0;
 }
 
 fieldset input.input {
   margin: 0 var(--spacing-4) 0 0;
+  padding: var(--spacing-3) var(--spacing-4);
 }
 
 .button-1 {
@@ -140,6 +144,12 @@ fieldset input.input {
 }
 .button-6 {
   background: var(--game-button-6);
+}
+.button-7 {
+  background: var(--game-button-7);
+}
+.button-6 {
+  background: var(--game-button-8);
 }
 
 .button-list {

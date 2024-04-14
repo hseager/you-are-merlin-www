@@ -16,15 +16,17 @@ export const ThemeSelection = ({ setTheme }: ThemeSelectionProps) => {
   return (
     <div className="theme-selection">
       <h2>Select a theme</h2>
-      {themes.map((theme) => (
-        <button
-          className="secondary"
-          onClick={() => setTheme(theme.trim())}
-          key={theme}
-        >
-          {theme}
-        </button>
-      ))}
+      <div className="button-list">
+        {themes.map((theme, i) => (
+          <button
+            className={`button-${i + 1}`}
+            onClick={() => setTheme(theme.trim())}
+            key={theme}
+          >
+            {theme}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
