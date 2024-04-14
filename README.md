@@ -1,6 +1,6 @@
 # You are Merlin (WASM)
 
-A text adventure game, built with Rust. This is the WebAssembly (WASM) version.
+A text adventure game, built with Rust. This is the WebAssembly (WASM) version built with React, TypeScript etc etc.
 
 ![WASM Screenshot](screenshots/WASM-screenshot.png)
 

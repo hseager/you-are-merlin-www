@@ -42,8 +42,9 @@ export const Game = ({ theme, setTheme }: GameProps) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const input = formData.get("input");
+    const action = input ? input?.toString().trim() : "";
 
-    sendAction(input?.toString().trim() ?? "");
+    sendAction(action);
   };
 
   const updateTerminal = (value: string, newLine?: boolean) => {
@@ -53,6 +54,8 @@ export const Game = ({ theme, setTheme }: GameProps) => {
   };
 
   const sendAction = (action: string) => {
+    updateTerminal(`> ${action}`, true);
+
     const response = game.handle_action(action);
     if (response) updateTerminal(response);
 
