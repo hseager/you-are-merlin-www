@@ -1,8 +1,13 @@
-# You are Merlin www
+# You are Merlin (WASM)
 
-Wep app for the "You are Merlin" Rust text adventure game.
+A text adventure game, built with Rust. This is the WebAssembly (WASM) version.
 
-## Dev
+![WASM Screenshot](screenshots/WASM-screenshot.png)
 
-- Run wasm-pack build in you-are-merlin
+[Click here for the Rust project and CLI version](https://github.com/hseager/you-are-merlin)
+
+## Dev setup
+
+- Run `wasm-pack build` in the you-are-merlin project
 - Copy generated pkg folder to /src/pkg
+- run `bun run dev` in root
