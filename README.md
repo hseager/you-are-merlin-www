@@ -6,6 +6,15 @@ A text adventure game, built with Rust. This is the WebAssembly (WASM) version b
 
 [Click here for the Rust project and CLI version](https://github.com/hseager/you-are-merlin)
 
+## Game Features
+
+- Main quest with a final world boss, try to beat them!
+- Different Themes
+- Side quests
+- Items
+- Battles
+- Recovery
+
 ## Dev setup
 
 - Run `wasm-pack build` in the you-are-merlin project
