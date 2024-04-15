@@ -1,0 +1,24 @@
+{
+  "name": "you_are_merlin",
+  "collaborators": [
+    "Harvey Seager <harvey.seager@googlemail.com>"
+  ],
+  "description": "A text adventure game built with Rust",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hseager/you-are-merlin"
+  },
+  "files": [
+    "you_are_merlin_bg.wasm",
+    "you_are_merlin.js",
+    "you_are_merlin_bg.js",
+    "you_are_merlin.d.ts"
+  ],
+  "module": "you_are_merlin.js",
+  "types": "you_are_merlin.d.ts",
+  "sideEffects": [
+    "./you_are_merlin.js",
+    "./snippets/*"
+  ]
+}
