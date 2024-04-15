@@ -2,6 +2,8 @@
 
 A text adventure game, built with Rust. This is the WebAssembly (WASM) version built with React, TypeScript etc etc.
 
+Demo: [https://hseager.github.io/you-are-merlin-www/](https://hseager.github.io/you-are-merlin-www/)
+
 ![WASM Screenshot](screenshots/WASM-screenshot.png)
 
 [Click here for the Rust project and CLI version](https://github.com/hseager/you-are-merlin)
