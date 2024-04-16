@@ -10,13 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@types/node": "^20.11.30",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "unplugin-icons": "^0.18.5"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.66",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

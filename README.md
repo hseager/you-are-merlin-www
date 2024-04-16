@@ -22,3 +22,8 @@ Demo: [https://hseager.github.io/you-are-merlin-www/](https://hseager.github.io/
 - Run `wasm-pack build` in the you-are-merlin project
 - Copy generated pkg folder to /src/pkg
 - run `bun run dev` in root
+
+## TODO
+
+- Text colors
+- Button to switch buttons & text input

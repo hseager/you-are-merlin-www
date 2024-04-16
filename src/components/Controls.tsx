@@ -1,6 +1,5 @@
 import { ChangeEvent, useState } from "react";
 import { ActionButtons } from "./ActionButtons";
-import IconAccountBox from "~icons/mdi/account-box";
 
 interface ControlProps {
   actions: string;
@@ -36,7 +35,6 @@ export const Controls = ({ actions, sendAction }: ControlProps) => {
         />
         <button>Submit</button>
       </fieldset>
-      <ReactLogo style={{ fontSize: "3em" }} />
     </form>
   );
 };
