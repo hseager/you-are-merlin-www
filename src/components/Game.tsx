@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   Dispatch,
   SetStateAction,
   useEffect,
@@ -8,7 +7,7 @@ import {
   useState,
 } from "react";
 import * as wasmPkg from "../pkg/you_are_merlin";
-import { ActionButtons } from "./ActionButtons";
+import { Controls } from "./Controls";
 
 interface GameProps {
   theme: string;
@@ -18,9 +17,7 @@ interface GameProps {
 export const Game = ({ theme, setTheme }: GameProps) => {
   const game = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
-  const [input, setInput] = useState("");
   const [data, setData] = useState("");
-
   const [actions, setActions] = useState(game.get_actions());
 
   useEffect(() => {
@@ -38,34 +35,10 @@ export const Game = ({ theme, setTheme }: GameProps) => {
     setActions(game.get_actions());
   }, [game.get_actions()]);
 
-  const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const input = formData.get("input");
-    const action = input ? input?.toString().trim() : "";
-
-    sendAction(action);
-  };
-
   const updateTerminal = (value: string, newLine?: boolean) => {
     setData((data) => {
       return (data += `${newLine === false ? "\n" : "\n\n"}` + value);
     });
-  };
-
-  const sendAction = (action: string) => {
-    updateTerminal(`> ${action}`, true);
-
-    const response = game.handle_action(action);
-    if (response) updateTerminal(response);
-
-    setInput("");
-
-    if (game.has_event_loop()) {
-      handleEventLoop().then(getPrompt);
-    } else {
-      getPrompt();
-    }
   };
 
   const getPrompt = () => {
@@ -90,6 +63,19 @@ export const Game = ({ theme, setTheme }: GameProps) => {
   const scrollTerminalToBottom = (terminal: HTMLTextAreaElement) =>
     (terminal.scrollTop = terminal?.scrollHeight);
 
+  const sendAction = (action: string) => {
+    updateTerminal(`> ${action}`, true);
+
+    const response = game.handle_action(action);
+    if (response) updateTerminal(response);
+
+    if (game.has_event_loop()) {
+      handleEventLoop().then(getPrompt);
+    } else {
+      getPrompt();
+    }
+  };
+
   return (
     <>
       <textarea
@@ -101,22 +87,7 @@ export const Game = ({ theme, setTheme }: GameProps) => {
         readOnly
       />
       {!game.has_event_loop() && game.is_running() && (
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <ActionButtons
-            actions={actions ? actions.split(",") : []}
-            sendAction={sendAction}
-          />
-          <fieldset>
-            <input
-              className="input"
-              name="input"
-              type="text"
-              value={input}
-              onChange={(event) => setInput(event.target.value)}
-            />
-            <button>Submit</button>
-          </fieldset>
-        </form>
+        <Controls actions={actions ?? ""} sendAction={sendAction} />
       )}
       {!game.is_running() && (
         <button onClick={() => setTheme("")}>New Game</button>
