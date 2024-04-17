@@ -8,13 +8,15 @@ import {
 } from "react";
 import * as wasmPkg from "../pkg/you_are_merlin";
 import { Controls } from "./Controls";
+import { InputType } from "../types";
 
 interface GameProps {
   theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
+  inputType: InputType | undefined;
 }
 
-export const Game = ({ theme, setTheme }: GameProps) => {
+export const Game = ({ theme, setTheme, inputType }: GameProps) => {
   const game = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
   const [data, setData] = useState("");
@@ -25,6 +27,10 @@ export const Game = ({ theme, setTheme }: GameProps) => {
 
     const prompt = game.get_prompt();
     prompt && updateTerminal(prompt);
+
+    if (inputType == InputType.Keyboard) {
+      actions && updateTerminal(actions);
+    }
   }, []);
 
   useEffect(() => {
@@ -44,6 +50,10 @@ export const Game = ({ theme, setTheme }: GameProps) => {
   const getPrompt = () => {
     const prompt = game.get_prompt();
     prompt && updateTerminal(prompt);
+
+    if (inputType == InputType.Keyboard) {
+      actions && updateTerminal(actions);
+    }
   };
 
   const handleEventLoop = () => {
@@ -87,7 +97,11 @@ export const Game = ({ theme, setTheme }: GameProps) => {
         readOnly
       />
       {!game.has_event_loop() && game.is_running() && (
-        <Controls actions={actions ?? ""} sendAction={sendAction} />
+        <Controls
+          actions={actions ?? ""}
+          sendAction={sendAction}
+          inputType={inputType}
+        />
       )}
       {!game.is_running() && (
         <button onClick={() => setTheme("")}>New Game</button>

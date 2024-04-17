@@ -2,10 +2,11 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { get_theme_display_list } from "../pkg";
 
 interface ThemeSelectionProps {
+  theme: string;
   setTheme: Dispatch<SetStateAction<string>>;
 }
 
-export const ThemeSelection = ({ setTheme }: ThemeSelectionProps) => {
+export const ThemeSelection = ({ theme, setTheme }: ThemeSelectionProps) => {
   const [themes, setThemes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -17,13 +18,13 @@ export const ThemeSelection = ({ setTheme }: ThemeSelectionProps) => {
     <div className="theme-selection">
       <h2>Select a theme</h2>
       <div className="button-list">
-        {themes.map((theme, i) => (
+        {themes.map((t, i) => (
           <button
-            className={`button-${i + 1}`}
-            onClick={() => setTheme(theme.trim())}
-            key={theme}
+            className={`button-${i + 1} ${t.trim() == theme ? "active" : ""}`}
+            onClick={() => setTheme(t.trim())}
+            key={t}
           >
-            {theme}
+            {t}
           </button>
         ))}
       </div>

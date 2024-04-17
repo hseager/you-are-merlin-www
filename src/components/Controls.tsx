@@ -1,12 +1,14 @@
 import { ChangeEvent, useState } from "react";
 import { ActionButtons } from "./ActionButtons";
+import { InputType } from "../types";
 
 interface ControlProps {
   actions: string;
   sendAction: (value: string) => void;
+  inputType: InputType | undefined;
 }
 
-export const Controls = ({ actions, sendAction }: ControlProps) => {
+export const Controls = ({ actions, sendAction, inputType }: ControlProps) => {
   const [input, setInput] = useState("");
 
   const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
@@ -21,20 +23,24 @@ export const Controls = ({ actions, sendAction }: ControlProps) => {
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
-      <ActionButtons
-        actions={actions ? actions.split(",") : []}
-        sendAction={sendAction}
-      />
-      <fieldset>
-        <input
-          className="input"
-          name="input"
-          type="text"
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
+      {inputType == InputType.Buttons && (
+        <ActionButtons
+          actions={actions ? actions.split(",") : []}
+          sendAction={sendAction}
         />
-        <button>Submit</button>
-      </fieldset>
+      )}
+      {inputType == InputType.Keyboard && (
+        <fieldset>
+          <input
+            className="input"
+            name="input"
+            type="text"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          />
+          <button>Send</button>
+        </fieldset>
+      )}
     </form>
   );
 };

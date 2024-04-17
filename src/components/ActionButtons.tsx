@@ -18,10 +18,6 @@ export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
           </button>
         ))}
       </div>
-
-      <button type="button">
-        <i className="mdi mdi-keyboard-outline"></i>
-      </button>
     </div>
   );
 };
