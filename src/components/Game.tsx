@@ -52,6 +52,7 @@ export const Game = ({ theme, setTheme, inputType }: GameProps) => {
     prompt && updateTerminal(prompt);
 
     if (inputType == InputType.Keyboard) {
+      const actions = game.get_actions();
       actions && updateTerminal(actions);
     }
   };
