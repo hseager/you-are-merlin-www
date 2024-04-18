@@ -1,22 +1,15 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as wasmPkg from "../pkg/you_are_merlin";
 import { Controls } from "./Controls";
 import { InputType } from "../types";
 
 interface GameProps {
   theme: string;
-  setTheme: Dispatch<SetStateAction<string>>;
   inputType: InputType | undefined;
+  resetGame: () => void;
 }
 
-export const Game = ({ theme, setTheme, inputType }: GameProps) => {
+export const Game = ({ theme, inputType, resetGame }: GameProps) => {
   const game = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
   const [data, setData] = useState("");
@@ -104,9 +97,7 @@ export const Game = ({ theme, setTheme, inputType }: GameProps) => {
           inputType={inputType}
         />
       )}
-      {!game.is_running() && (
-        <button onClick={() => setTheme("")}>New Game</button>
-      )}
+      {!game.is_running() && <button onClick={resetGame}>New Game</button>}
     </>
   );
 };

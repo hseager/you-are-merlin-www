@@ -11,6 +11,11 @@ function App() {
 
   const isGameReady = () => theme && typeof inputType !== "undefined";
 
+  const resetGame = () => {
+    setTheme("");
+    setInputType(undefined);
+  };
+
   return (
     <>
       <h1>You are Merlin</h1>
@@ -26,7 +31,7 @@ function App() {
       {}
 
       {isGameReady() && (
-        <Game theme={theme} setTheme={setTheme} inputType={inputType} />
+        <Game theme={theme} inputType={inputType} resetGame={resetGame} />
       )}
     </>
   );
