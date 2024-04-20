@@ -1,4 +1,4 @@
-import { convertColorToBackground } from "../utilities";
+import { toButton } from "../utilities";
 
 interface ActionButtons {
   actions: string[];
@@ -9,14 +9,14 @@ export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
   return (
     <div>
       <div className="button-list">
-        {actions.map((action, i) => (
+        {actions.map((action) => (
           <button
             type="button"
             className={`fake-button`}
             onClick={() => sendAction(action.trim())}
             key={action}
             dangerouslySetInnerHTML={{
-              __html: convertColorToBackground(action),
+              __html: toButton(action),
             }}
           ></button>
         ))}

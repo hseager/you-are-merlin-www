@@ -14,17 +14,29 @@
   --theme-4: #217388;
   --theme-5: #868585;
 
-  --theme-red: #dc2626;
-  --theme-cyan: #0891b2;
-  --theme-green: #16a34a;
-  --theme-yellow: #ca8a04;
-  --theme-blue: #2563eb;
-  --theme-magenta: #e11d48;
-  --theme-sky: #0284c7;
-  --theme-pink: #db2777;
-  --theme-amber: #d97706;
-  --theme-indigo: #4f46e5;
-  --theme-emerald: #059669;
+  --theme-red: #fca5a5;
+  --theme-cyan: #67e8f9;
+  --theme-green: #86efac;
+  --theme-yellow: #fde047;
+  --theme-blue: #93c5fd;
+  --theme-magenta: #fda4af;
+  --theme-sky: #7dd3fc;
+  --theme-pink: #f9a8d4;
+  --theme-amber: #fcd34d;
+  --theme-indigo: #c4b5fd;
+  --theme-emerald: #6ee7b7;
+
+  --theme-red-dark: #7f1d1d;
+  --theme-cyan-dark: #164e63;
+  --theme-green-dark: #14532d;
+  --theme-yellow-dark: #713f12;
+  --theme-blue-dark: #1e3a8a;
+  --theme-magenta-dark: #881337;
+  --theme-sky-dark: #0c4a6e;
+  --theme-pink-dark: #831843;
+  --theme-amber-dark: #78350f;
+  --theme-indigo-dark: #312e81;
+  --theme-emerald-dark: #064e3b;
 
   --grey-100: #efefef;
   --grey-300: #777;

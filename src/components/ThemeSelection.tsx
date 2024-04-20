@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { get_theme_display_list } from "../pkg";
-import { convertColorToBackground, stripTags } from "../utilities";
+import { toButton, stripTags } from "../utilities";
 
 interface ThemeSelectionProps {
   theme: string;
@@ -28,7 +28,7 @@ export const ThemeSelection = ({ theme, setTheme }: ThemeSelectionProps) => {
                 setTheme(themeValue);
               }}
               key={t}
-              dangerouslySetInnerHTML={{ __html: convertColorToBackground(t) }}
+              dangerouslySetInnerHTML={{ __html: toButton(t) }}
             ></button>
           );
         })}

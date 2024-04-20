@@ -19,7 +19,7 @@ export const InputSelection = ({
         <button
           className={`button ${inputType == InputType.Buttons ? "active" : ""}`}
           onClick={() => setInputType(InputType.Buttons)}
-          style={{ background: "var(--theme-blue)" }}
+          style={{ background: "var(--theme-blue-dark)" }}
         >
           Buttons
         </button>
@@ -28,7 +28,7 @@ export const InputSelection = ({
             inputType == InputType.Keyboard ? "active" : ""
           }`}
           onClick={() => setInputType(InputType.Keyboard)}
-          style={{ background: "var(--theme-green)" }}
+          style={{ background: "var(--theme-green-dark)" }}
         >
           Keyboard
         </button>
