@@ -49,7 +49,6 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   const handleEventLoop = () => {
     return new Promise<void>((resolve) => {
-      updateTerminal(game.progress_event_loop(), false);
       const eventLoop = setInterval(() => {
         if (game.has_event_loop()) {
           updateTerminal(game.progress_event_loop(), false);
