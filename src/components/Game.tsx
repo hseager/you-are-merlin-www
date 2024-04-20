@@ -36,7 +36,7 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   const updateTerminal = (value: string, newLine?: boolean) => {
     setData((data) => {
-      return (data += `${newLine === false ? "\n" : "\n\n"}` + value);
+      return (data += `${newLine === false ? "<br/>" : "<br/></br>"}` + value);
     });
   };
 
@@ -68,7 +68,10 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
     (terminal.scrollTop = terminal?.scrollHeight);
 
   const sendAction = (action: string) => {
-    updateTerminal(`> ${action}`, true);
+    updateTerminal(
+      `<span style="color: var(--grey-300);">> ${action}</span>`,
+      true
+    );
 
     const response = game.handle_action(action);
     if (response) updateTerminal(response);
@@ -82,14 +85,11 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   return (
     <>
-      <textarea
-        className="input"
-        cols={20}
-        rows={16}
-        value={data}
+      <article
+        className="terminal"
         ref={terminalRef}
-        readOnly
-      />
+        dangerouslySetInnerHTML={{ __html: data }}
+      ></article>
       {!game.has_event_loop() && game.is_running() && (
         <Controls
           actions={actions ?? ""}

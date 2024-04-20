@@ -20,6 +20,8 @@
   --game-button-6: #854d0e;
   --game-button-7: #7f1d1d;
   --game-button-8: #1f2937;
+  --grey-100: #efefef;
+  --grey-300: #777;
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 15px;
@@ -30,8 +32,8 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color-scheme: dark;
+  color: var(--grey-100);
   background-color: var(--theme-1);
 
   font-synthesis: none;
@@ -91,7 +93,8 @@ button {
   box-shadow: 0 0 10px var(--theme-4);
 }
 
-.input {
+.input,
+.terminal {
   width: 100%;
   margin-bottom: 16px;
   padding: var(--spacing-4);
@@ -101,6 +104,13 @@ button {
   line-height: 1.5;
   font-family: inherit;
   background: var(--theme-3);
+  color: var(--grey-100);
+}
+
+.terminal {
+  text-align: left;
+  max-height: 460px;
+  overflow-y: auto;
 }
 
 .input:focus {
