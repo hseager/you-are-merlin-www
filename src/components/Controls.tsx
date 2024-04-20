@@ -38,7 +38,7 @@ export const Controls = ({ actions, sendAction, inputType }: ControlProps) => {
             value={input}
             onChange={(event) => setInput(event.target.value)}
           />
-          <button>Send</button>
+          <button className="button">Send</button>
         </fieldset>
       )}
     </form>

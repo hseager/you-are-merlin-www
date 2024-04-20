@@ -69,7 +69,10 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   const sendAction = (action: string) => {
     updateTerminal(
-      `<span style="color: var(--grey-300);">> ${action}</span>`,
+      `<span style="color: var(--grey-300);">> ${action.replace(
+        "--theme",
+        "--kill"
+      )}</span>`,
       true
     );
 

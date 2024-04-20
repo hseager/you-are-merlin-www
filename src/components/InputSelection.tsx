@@ -17,18 +17,18 @@ export const InputSelection = ({
       <h2>Select input type</h2>
       <div className="button-list">
         <button
-          className={`button-1 ${
-            inputType == InputType.Buttons ? "active" : ""
-          }`}
+          className={`button ${inputType == InputType.Buttons ? "active" : ""}`}
           onClick={() => setInputType(InputType.Buttons)}
+          style={{ background: "var(--theme-blue)" }}
         >
           Buttons
         </button>
         <button
-          className={`button-2 ${
+          className={`button ${
             inputType == InputType.Keyboard ? "active" : ""
           }`}
           onClick={() => setInputType(InputType.Keyboard)}
+          style={{ background: "var(--theme-green)" }}
         >
           Keyboard
         </button>

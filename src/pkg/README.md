@@ -1,24 +1,27 @@
 # You are Merlin
 
-A text adventure game, built with Rust.
+A text adventure game, built with Rust. Compiles to CLI and WASM.
 
-## Features
+![CLI Screenshot](screenshots/CLI-screenshot.png)
 
-- Main quest with a final world boss
-- Dungeons
-- Items
+[Click here for the WebAssembly (WASM) version with a web demo](https://github.com/hseager/you-are-merlin-www)
+
+## Game Features
+
+- Main quest with a final world boss, try to beat them!
+- Different Themes
 - Side quests
+- Items
+- Battles
+- Recovery
 
 ### Tips
 
 - Finding a safezone will make your journey easier!
 - Try exploring and get stronger before facing the final boss
-- You don't have to type out the full action, it's a partial match
+- You don't have to type out the full action, a partial match will do
 
 ## To do
-
-#### mvp
-- WASM into webpage
 
 #### v1.0
 - Boss quote
@@ -39,8 +42,7 @@ A text adventure game, built with Rust.
 
 ### Refactor
 
-- clones in world builder
-- Messy sidequests
+- Stop cloning everything... try to reference locations etc
 - Unit tests
 
 ## Dev
