@@ -17,13 +17,6 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   useEffect(() => {
     setData(game.get_intro());
-
-    const prompt = game.get_prompt();
-    prompt && updateTerminal(prompt);
-
-    if (inputType == InputType.Keyboard) {
-      actions && updateTerminal(actions);
-    }
   }, []);
 
   useEffect(() => {
@@ -33,6 +26,10 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
   useEffect(() => {
     setActions(game.get_actions());
   }, [game.get_actions()]);
+
+  useEffect(() => {
+    getPrompt();
+  }, [game.get_prompt()]);
 
   const updateTerminal = (value: string, newLine?: boolean) => {
     setData((data) => {
@@ -80,9 +77,7 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
     if (response) updateTerminal(response);
 
     if (game.has_event_loop()) {
-      handleEventLoop().then(getPrompt);
-    } else {
-      getPrompt();
+      handleEventLoop();
     }
   };
 
@@ -100,7 +95,11 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
           inputType={inputType}
         />
       )}
-      {!game.is_running() && <button onClick={resetGame}>New Game</button>}
+      {!game.is_running() && (
+        <button className="button" onClick={resetGame}>
+          New Game
+        </button>
+      )}
     </>
   );
 };
