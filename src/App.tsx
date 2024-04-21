@@ -21,14 +21,10 @@ function App() {
       <p>A text adventure game built with Rust and WebAssembly (WASM)</p>
       <br />
       <br />
-      {!isGameReady() && (
-        <>
-          <ThemeSelection theme={theme} setTheme={setTheme} />
-          <InputSelection inputType={inputType} setInputType={setInputType} />
-        </>
+      {!theme && <ThemeSelection theme={theme} setTheme={setTheme} />}
+      {theme && typeof inputType == "undefined" && (
+        <InputSelection inputType={inputType} setInputType={setInputType} />
       )}
-      {}
-
       {isGameReady() && (
         <Game theme={theme} inputType={inputType} resetGame={resetGame} />
       )}
