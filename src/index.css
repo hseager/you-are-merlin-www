@@ -46,8 +46,10 @@
   --font-md: 16px;
   --font-lg: 18px;
   --font-xl: 22px;
+  --font-family: "Raleway", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
 
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   line-height: 1.5;
   font-weight: 400;
 
@@ -85,6 +87,19 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+#root {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 920px) {
+  #root {
+    min-width: 920px;
+  }
 }
 
 .button {

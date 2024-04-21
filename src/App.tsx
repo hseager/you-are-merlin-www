@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 import { Game } from "./components/Game";
 import { ThemeSelection } from "./components/ThemeSelection";
 import { InputType } from "./types";
