@@ -90,16 +90,10 @@ h1 {
 }
 
 #root {
-  max-width: 1024px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-
-@media screen and (min-width: 920px) {
-  #root {
-    min-width: 920px;
-  }
 }
 
 .button {
