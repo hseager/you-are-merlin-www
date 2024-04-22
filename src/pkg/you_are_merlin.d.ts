@@ -34,9 +34,9 @@ export class Game {
 */
   handle_action(search: string): string | undefined;
 /**
-* @returns {string}
+* @returns {string | undefined}
 */
-  progress_event_loop(): string;
+  progress_event_loop(): string | undefined;
 /**
 * @returns {boolean}
 */

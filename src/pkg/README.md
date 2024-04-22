@@ -18,10 +18,12 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 ### Tips
 
 - Finding a safezone will make your journey easier!
-- Try exploring and get stronger before facing the final boss
+- Try exploring to get stronger before facing the final boss
 - You don't have to type out the full action, a partial match will do
 
 ## To do
+
+### Ideas 
 
 #### v1.0
 - Boss quote
@@ -35,6 +37,8 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 - More types of encounters like puzzles and riddles etc
     - Choice encounter with reward or damage
 - Split items into types like weapons, armor, utilities with unique stats
+- Inventory
+- Multithreading attacks
 
 #### later
 - Require key for main boss
@@ -45,7 +49,19 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 - Stop cloning everything... try to reference locations etc
 - Unit tests
 
-## Dev
+## Building
+
+### Development
 
 - cargo build
 - cargo run
+
+### WASM
+
+- wasm-pack build
+
+### CLI Production
+
+- cargo build -r
+
+

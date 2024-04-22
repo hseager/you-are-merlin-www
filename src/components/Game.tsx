@@ -51,12 +51,13 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
     return new Promise<void>((resolve) => {
       const eventLoop = setInterval(() => {
         if (game.has_event_loop()) {
-          updateTerminal(game.progress_event_loop(), false);
+          const response = game.progress_event_loop();
+          response && updateTerminal(response, false);
         } else {
           clearInterval(eventLoop);
           resolve();
         }
-      }, game.get_event_loop_interval() * 1000);
+      }, game.get_event_loop_interval());
     });
   };
 

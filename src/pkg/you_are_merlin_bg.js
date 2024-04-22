@@ -262,22 +262,22 @@ export class Game {
         }
     }
     /**
-    * @returns {string}
+    * @returns {string | undefined}
     */
     progress_event_loop() {
-        let deferred1_0;
-        let deferred1_1;
         try {
             const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
             wasm.game_progress_event_loop(retptr, this.__wbg_ptr);
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
-            deferred1_0 = r0;
-            deferred1_1 = r1;
-            return getStringFromWasm0(r0, r1);
+            let v1;
+            if (r0 !== 0) {
+                v1 = getStringFromWasm0(r0, r1).slice();
+                wasm.__wbindgen_free(r0, r1 * 1, 1);
+            }
+            return v1;
         } finally {
             wasm.__wbindgen_add_to_stack_pointer(16);
-            wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
         }
     }
     /**
@@ -292,7 +292,7 @@ export class Game {
     */
     get_event_loop_interval() {
         const ret = wasm.game_get_event_loop_interval(this.__wbg_ptr);
-        return ret;
+        return ret >>> 0;
     }
 }
 
