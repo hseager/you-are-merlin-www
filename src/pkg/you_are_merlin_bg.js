@@ -262,12 +262,13 @@ export class Game {
         }
     }
     /**
+    * @param {number} current_epoch_milli
     * @returns {string | undefined}
     */
-    progress_event_loop() {
+    progress_event_loop(current_epoch_milli) {
         try {
             const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-            wasm.game_progress_event_loop(retptr, this.__wbg_ptr);
+            wasm.game_progress_event_loop(retptr, this.__wbg_ptr, current_epoch_milli);
             var r0 = getInt32Memory0()[retptr / 4 + 0];
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             let v1;

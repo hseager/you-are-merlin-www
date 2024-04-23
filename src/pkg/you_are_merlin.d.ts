@@ -34,9 +34,10 @@ export class Game {
 */
   handle_action(search: string): string | undefined;
 /**
+* @param {number} current_epoch_milli
 * @returns {string | undefined}
 */
-  progress_event_loop(): string | undefined;
+  progress_event_loop(current_epoch_milli: number): string | undefined;
 /**
 * @returns {boolean}
 */
