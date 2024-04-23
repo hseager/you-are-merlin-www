@@ -8,12 +8,6 @@
   --spacing-6: 52px;
   --spacing-7: 84px;
 
-  --theme-1: #18181b;
-  --theme-2: #2b6842;
-  --theme-3: #313536;
-  --theme-4: #217388;
-  --theme-5: #868585;
-
   --theme-red: #fca5a5;
   --theme-cyan: #67e8f9;
   --theme-green: #86efac;
@@ -40,7 +34,13 @@
 
   --grey-100: #efefef;
   --grey-300: #777;
-  --grey-900: #1c1917;
+  --grey-950: #030712;
+
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #020617;
+
   --font-xs: 11px;
   --font-sm: 12px;
   --font-md: 16px;
@@ -55,7 +55,7 @@
 
   color-scheme: dark;
   color: var(--grey-100);
-  background-color: var(--grey-900);
+  background-color: var(--grey-950);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -69,11 +69,11 @@
 
 a {
   font-weight: 500;
-  color: var(--theme-2);
+  color: var(--theme-blue);
   text-decoration: inherit;
 }
 a:hover {
-  color: var(--theme-2);
+  color: var(--theme-blue);
 }
 
 body {
@@ -103,7 +103,7 @@ h1 {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background: var(--theme-2);
+  background: var(--theme-green-dark);
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -127,20 +127,7 @@ h1 {
 }
 
 .fake-button.active span {
-  box-shadow: 0 0 16px var(--grey-900);
-}
-
-.secondary {
-  margin: 0 var(--spacing-3) var(--spacing-3) 0;
-  background: var(--theme-4);
-}
-.secondary:hover {
-  border-color: var(--theme-4);
-}
-.secondary:focus,
-.secondary:focus-visible {
-  border: 1px solid var(--theme-4);
-  box-shadow: 0 0 10px var(--theme-4);
+  box-shadow: 0 0 16px var(--slate-900);
 }
 
 .input,
@@ -149,11 +136,11 @@ h1 {
   margin-bottom: 16px;
   padding: var(--spacing-4);
   border-radius: 12px;
-  border: 1px solid #999;
+  border: 1px solid var(--slate-800);
   font-size: var(--font-md);
   line-height: 1.5;
   font-family: inherit;
-  background: var(--theme-1);
+  background: var(--slate-950);
   color: var(--grey-100);
 }
 
@@ -166,8 +153,7 @@ h1 {
 
 .input:focus {
   outline: none;
-  border: 1px solid var(--theme-5);
-  box-shadow: 0 0 6px var(--theme-5);
+  border: 1px solid var(--slate-700);
 }
 
 textarea.input {
