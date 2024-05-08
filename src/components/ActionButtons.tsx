@@ -12,7 +12,7 @@ export const ActionButtons = ({ actions, sendAction }: ActionButtons) => {
         {actions.map((action) => (
           <button
             type="button"
-            className={`fake-button`}
+            className="fake-button"
             onClick={() => sendAction(action.trim())}
             key={action}
             dangerouslySetInnerHTML={{
