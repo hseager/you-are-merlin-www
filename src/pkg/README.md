@@ -9,12 +9,12 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 ## Game Features
 
 - Main quest with a final world boss, try to beat them!
-- Themes like Zelda, Star Wars and Fallout
+- Themes like Zelda, Lord of the Rings, Star Wars and Fallout
 - Side quests
 - Random loot generation and rewards
+- Item stats: Power, Attack Speed, Crit, Block, Parry, Dodge
 - Battles
-- Recovery
-- Inventory
+- Inventory & Equipment
 
 ### Tips
 
@@ -24,20 +24,9 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 
 ## To do
 
-### v0.2
-- Adjust items gen
-    - Can't get common items at the moment
-- Test in WASM
-- Add more weapon data for each theme so we don't run out
-- Balance changes
-    - Add stats to enemies
-- Display text rather than enemy stats
-
-- More types of encounters like puzzles and riddles etc
-    - Choice encounter with reward or damage
-
-### later
-- Manage during battles
+### v0.3
+- More types of encounters like puzzles and riddles like Choice encounter with reward or damage
+- Add more locations with 2 safe zones and side quests
 - Change rest to only partially heal
     - Gain life/potions from some encounters
 - Usable items

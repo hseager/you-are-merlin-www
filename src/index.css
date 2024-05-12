@@ -8,18 +8,18 @@
   --spacing-6: 52px;
   --spacing-7: 84px;
 
-  --theme-red: #fca5a5;
-  --theme-cyan: #67e8f9;
-  --theme-green: #86efac;
-  --theme-yellow: #fde047;
-  --theme-blue: #93c5fd;
-  --theme-magenta: #fda4af;
-  --theme-sky: #7dd3fc;
-  --theme-pink: #f9a8d4;
-  --theme-amber: #fcd34d;
-  --theme-indigo: #c4b5fd;
-  --theme-purple: #d8b4fe;
-  --theme-orange: #fdba74;
+  --theme-red: #f87171;
+  --theme-cyan: #22d3ee;
+  --theme-green: #4ade80;
+  --theme-yellow: #facc15;
+  --theme-blue: #60a5fa;
+  --theme-magenta: #fb7185;
+  --theme-sky: #38bdf8;
+  --theme-pink: #f472b6;
+  --theme-amber: #fbbf24;
+  --theme-indigo: #818cf8;
+  --theme-purple: #c084fc;
+  --theme-orange: #fb923c;
 
   --theme-red-dark: #7f1d1d;
   --theme-cyan-dark: #164e63;
@@ -48,7 +48,7 @@
   --font-md: 17px;
   --font-lg: 18px;
   --font-xl: 22px;
-  --font-family: "Raleway", Inter, system-ui, Avenir, Helvetica, Arial,
+  --font-family: "Reddit Sans", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
 
   font-family: var(--font-family);
@@ -141,7 +141,7 @@ h1 {
   border-radius: 12px;
   border: 1px solid var(--slate-800);
   font-size: var(--font-md);
-  line-height: 1.5;
+  line-height: 1.6;
   font-family: inherit;
   background: var(--slate-950);
   color: var(--grey-100);
