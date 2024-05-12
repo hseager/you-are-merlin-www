@@ -8,17 +8,18 @@
   --spacing-6: 52px;
   --spacing-7: 84px;
 
-  --theme-red: #fca5a5;
-  --theme-cyan: #67e8f9;
-  --theme-green: #86efac;
-  --theme-yellow: #fde047;
-  --theme-blue: #93c5fd;
-  --theme-magenta: #fda4af;
-  --theme-sky: #7dd3fc;
-  --theme-pink: #f9a8d4;
-  --theme-amber: #fcd34d;
-  --theme-indigo: #c4b5fd;
-  --theme-emerald: #6ee7b7;
+  --theme-red: #f87171;
+  --theme-cyan: #22d3ee;
+  --theme-green: #4ade80;
+  --theme-yellow: #facc15;
+  --theme-blue: #60a5fa;
+  --theme-magenta: #fb7185;
+  --theme-sky: #38bdf8;
+  --theme-pink: #f472b6;
+  --theme-amber: #fbbf24;
+  --theme-indigo: #818cf8;
+  --theme-purple: #c084fc;
+  --theme-orange: #fb923c;
 
   --theme-red-dark: #7f1d1d;
   --theme-cyan-dark: #164e63;
@@ -30,23 +31,24 @@
   --theme-pink-dark: #831843;
   --theme-amber-dark: #78350f;
   --theme-indigo-dark: #312e81;
-  --theme-emerald-dark: #064e3b;
+  --theme-purple-dark: #581c87;
+  --theme-orange-dark: #7c2d12;
 
   --grey-100: #efefef;
   --grey-300: #777;
   --grey-950: #030712;
 
-  --slate-700: #334155;
-  --slate-800: #1e293b;
-  --slate-900: #0f172a;
-  --slate-950: #020617;
+  --slate-700: #3f3f46;
+  --slate-800: #27272a;
+  --slate-900: #171717;
+  --slate-950: #09090b;
 
   --font-xs: 11px;
   --font-sm: 12px;
-  --font-md: 16px;
+  --font-md: 17px;
   --font-lg: 18px;
   --font-xl: 22px;
-  --font-family: "Raleway", Inter, system-ui, Avenir, Helvetica, Arial,
+  --font-family: "Reddit Sans", Inter, system-ui, Avenir, Helvetica, Arial,
     sans-serif;
 
   font-family: var(--font-family);
@@ -55,7 +57,7 @@
 
   color-scheme: dark;
   color: var(--grey-100);
-  background-color: var(--grey-950);
+  background-color: var(--slate-900);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -91,6 +93,7 @@ h1 {
 
 #root {
   max-width: 1080px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -119,14 +122,14 @@ h1 {
   padding: 0;
 }
 
-.fake-button span {
+.fake-button > * {
   border-radius: 8px;
   padding: 0.6em 1.2em;
   display: block;
   border: 2px solid transparent;
 }
 
-.fake-button.active span {
+.fake-button.active > * {
   box-shadow: 0 0 16px var(--slate-900);
 }
 
@@ -138,7 +141,7 @@ h1 {
   border-radius: 12px;
   border: 1px solid var(--slate-800);
   font-size: var(--font-md);
-  line-height: 1.5;
+  line-height: 1.6;
   font-family: inherit;
   background: var(--slate-950);
   color: var(--grey-100);
@@ -192,4 +195,10 @@ button.active span {
 
 .button-list button:last-of-type {
   margin-right: 0;
+}
+
+.github-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }

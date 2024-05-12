@@ -3,6 +3,7 @@ import { Game } from "./components/Game";
 import { ThemeSelection } from "./components/ThemeSelection";
 import { InputType } from "./types";
 import { InputSelection } from "./components/InputSelection";
+import { GitHubLink } from "./components/GitHubLink";
 
 function App() {
   const [theme, setTheme] = useState("");
@@ -28,6 +29,7 @@ function App() {
       {isGameReady() && (
         <Game theme={theme} inputType={inputType} resetGame={resetGame} />
       )}
+      <GitHubLink />
     </>
   );
 }
