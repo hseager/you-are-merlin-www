@@ -262,7 +262,7 @@ export class Game {
         }
     }
     /**
-    * @param {number} current_epoch_milli
+    * @param {bigint} current_epoch_milli
     * @returns {string | undefined}
     */
     progress_event_loop(current_epoch_milli) {

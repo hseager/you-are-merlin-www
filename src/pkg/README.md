@@ -13,6 +13,7 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 - Side quests
 - Random loot generation and rewards
 - Item stats: Power, Attack Speed, Crit, Block, Parry, Dodge
+- Item Rarities: Common, Rare, Epic, Legendary
 - Battles
 - Inventory & Equipment
 
@@ -60,5 +61,3 @@ A text adventure game, built with Rust. Compiles to CLI and WASM.
 ### CLI Production
 
 - cargo build -r
-
-
