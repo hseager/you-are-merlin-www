@@ -9,14 +9,22 @@ interface GameProps {
   resetGame: () => void;
 }
 
+type Row = {
+  id: number;
+  value: string;
+  newLine: boolean;
+};
+
 export const Game = ({ theme, inputType, resetGame }: GameProps) => {
   const game = useMemo(() => new wasmPkg.Game(theme), []);
   const terminalRef = useRef<HTMLTextAreaElement>(null);
-  const [data, setData] = useState("");
+  const [data, setData] = useState<Row[]>([]);
   const [actions, setActions] = useState(game.get_actions());
 
   useEffect(() => {
-    setData(game.get_intro());
+    setData([
+      { id: new Date().getTime(), value: game.get_intro(), newLine: false },
+    ]);
   }, []);
 
   useEffect(() => {
@@ -24,27 +32,29 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
   }, [data]);
 
   useEffect(() => {
-    setActions(game.get_actions());
-  }, [game.get_actions()]);
-
-  useEffect(() => {
     getPrompt();
   }, [game.get_prompt()]);
 
   const updateTerminal = (value: string, newLine?: boolean) => {
-    setData((data) => {
-      return (data += `${newLine === false ? "<br/>" : "<br/></br>"}` + value);
-    });
+    setData((prevData) => [
+      ...prevData,
+      {
+        id: new Date().getTime(),
+        value,
+        newLine: newLine === false ? false : true,
+      },
+    ]);
   };
 
   const getPrompt = () => {
     const prompt = game.get_prompt();
     prompt && updateTerminal(prompt);
 
+    const actions = game.get_actions();
     if (inputType == InputType.Keyboard) {
-      const actions = game.get_actions();
       actions && updateTerminal(actions.join(", "));
     }
+    setActions(actions);
   };
 
   const handleEventLoop = () => {
@@ -83,11 +93,15 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
   return (
     <>
-      <article
-        className="terminal"
-        ref={terminalRef}
-        dangerouslySetInnerHTML={{ __html: data }}
-      ></article>
+      <article className="terminal" ref={terminalRef}>
+        {data.map((item) => (
+          <p
+            key={item.id}
+            className={`fade-in ${item.newLine ? "" : "m-0"}`}
+            dangerouslySetInnerHTML={{ __html: item.value }}
+          ></p>
+        ))}
+      </article>
       {!game.has_event_loop() && game.is_running() && (
         <Controls
           actions={actions ?? []}
