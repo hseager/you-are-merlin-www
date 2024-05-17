@@ -25,9 +25,9 @@ export class Game {
 */
   get_prompt(): string | undefined;
 /**
-* @returns {string | undefined}
+* @returns {(string)[] | undefined}
 */
-  get_actions(): string | undefined;
+  get_actions(): (string)[] | undefined;
 /**
 * @param {string} search
 * @returns {string | undefined}

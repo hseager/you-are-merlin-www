@@ -119,6 +119,26 @@ function getInt32Memory0() {
     }
     return cachedInt32Memory0;
 }
+
+let cachedUint32Memory0 = null;
+
+function getUint32Memory0() {
+    if (cachedUint32Memory0 === null || cachedUint32Memory0.byteLength === 0) {
+        cachedUint32Memory0 = new Uint32Array(wasm.memory.buffer);
+    }
+    return cachedUint32Memory0;
+}
+
+function getArrayJsValueFromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    const mem = getUint32Memory0();
+    const slice = mem.subarray(ptr / 4, ptr / 4 + len);
+    const result = [];
+    for (let i = 0; i < slice.length; i++) {
+        result.push(takeObject(slice[i]));
+    }
+    return result;
+}
 /**
 * @returns {string}
 */
@@ -221,7 +241,7 @@ export class Game {
         }
     }
     /**
-    * @returns {string | undefined}
+    * @returns {(string)[] | undefined}
     */
     get_actions() {
         try {
@@ -231,8 +251,8 @@ export class Game {
             var r1 = getInt32Memory0()[retptr / 4 + 1];
             let v1;
             if (r0 !== 0) {
-                v1 = getStringFromWasm0(r0, r1).slice();
-                wasm.__wbindgen_free(r0, r1 * 1, 1);
+                v1 = getArrayJsValueFromWasm0(r0, r1).slice();
+                wasm.__wbindgen_free(r0, r1 * 4, 4);
             }
             return v1;
         } finally {

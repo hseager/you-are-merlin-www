@@ -43,7 +43,7 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
 
     if (inputType == InputType.Keyboard) {
       const actions = game.get_actions();
-      actions && updateTerminal(actions);
+      actions && updateTerminal(actions.join(", "));
     }
   };
 
@@ -90,7 +90,7 @@ export const Game = ({ theme, inputType, resetGame }: GameProps) => {
       ></article>
       {!game.has_event_loop() && game.is_running() && (
         <Controls
-          actions={actions ?? ""}
+          actions={actions ?? []}
           sendAction={sendAction}
           inputType={inputType}
         />

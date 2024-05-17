@@ -3,7 +3,7 @@ import { ActionButtons } from "./ActionButtons";
 import { InputType } from "../types";
 
 interface ControlProps {
-  actions: string;
+  actions: string[];
   sendAction: (value: string) => void;
   inputType: InputType | undefined;
 }
@@ -24,10 +24,7 @@ export const Controls = ({ actions, sendAction, inputType }: ControlProps) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       {inputType == InputType.Buttons && (
-        <ActionButtons
-          actions={actions ? actions.split(",") : []}
-          sendAction={sendAction}
-        />
+        <ActionButtons actions={actions} sendAction={sendAction} />
       )}
       {inputType == InputType.Keyboard && (
         <fieldset>
